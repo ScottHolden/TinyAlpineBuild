@@ -18,13 +18,13 @@ MOUNT_PATH="./$IMAGE_NAME"
 VHD_PATH="./$IMAGE_NAME.vhd"
 DISK_SIZE_MB="200" #1024
 
+apt-get install -y e2fsprogs qemu-utils
+
 wget -T 10 --no-verbose "$APK_TOOLS_URI"
 echo "$APK_TOOLS_SHA256 ${APK_TOOLS_URI##*/}" | sha256sum -c
 tar -xzf "${APK_TOOLS_URI##*/}"
 
 APK="$(ls apk-tools-*/apk)"
-
-#apk add e2fsprogs
 
 dd if=/dev/zero of=$RAW_PATH bs=1M count=$DISK_SIZE_MB
 mkfs.ext4 -L root -O ^64bit -E nodiscard $RAW_PATH

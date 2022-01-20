@@ -35,7 +35,7 @@ ROOT_UUID="$(findmnt $MOUNT_PATH -o UUID -n)"
 
 mkdir -p $MOUNT_PATH/etc/apk/keys
 
-cat > ./tinycloud/etc/apk/repositories <<-EOF
+cat > $MOUNT_PATH/etc/apk/repositories <<-EOF
 $ALPINE_MIRROR/$ALPINE_BRANCH/main
 $ALPINE_MIRROR/$ALPINE_BRANCH/community
 EOF

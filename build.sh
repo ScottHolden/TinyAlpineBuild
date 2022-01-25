@@ -15,9 +15,11 @@ APK_TOOLS_SHA256="efe948160317fe78058e207554d0d9195a3dfcc35f77df278d30448d7b3eb8
 IMAGE_NAME="demo"
 RAW_PATH="./$IMAGE_NAME.raw"
 MOUNT_PATH="./$IMAGE_NAME"
-VHD_PATH="./$IMAGE_NAME.vhd"
+#VHD_PATH="./$IMAGE_NAME.vhd"
+VMDK_PATH="./$IMAGE_NAME.vmdk"
 DISK_SIZE_MB="200" #1024
 
+apt-get update
 apt-get install -y e2fsprogs qemu-utils
 
 wget -T 10 --no-verbose "$APK_TOOLS_URI"
@@ -119,6 +121,9 @@ umount "$MOUNT_PATH"
 rmdir "$MOUNT_PATH"
 rm -rf apk-tools-*
 
-qemu-img convert -f raw -O vpc -o subformat=fixed,force_size $RAW_PATH $VHD_PATH
+#qemu-img convert -f raw -O vpc -o subformat=fixed,force_size $RAW_PATH $VHD_PATH
+qemu-img convert -f raw -O vmdk $RAW_PATH $VMDK_PATH
 
 rm $RAW_PATH
+
+ls -al

@@ -21,7 +21,6 @@ DISK_SIZE_MB="200" #1024
 
 apt-get update
 apt-get install -y e2fsprogs qemu-utils
-apt-get insatll -y packagethatdoesnotexist
 
 wget -T 10 --no-verbose "$APK_TOOLS_URI"
 echo "$APK_TOOLS_SHA256 ${APK_TOOLS_URI##*/}" | sha256sum -c
